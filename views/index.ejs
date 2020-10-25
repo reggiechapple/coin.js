@@ -1,0 +1,27 @@
+<%- include("./partials/header.ejs") %>
+
+<div class="container-fluid">
+    <section class="mx-auto">
+        <h1 class="text-xl font-bold mb-8">All Products</h1>
+        <div class="row">
+            <% products.forEach(function(product){ %>
+
+            <div class="col-4">
+                <div class="text-center">
+                    <h2 class="mb-4 text-lg"><%= product.name %></h2>
+                    <div class="flex items-center justify-around mt-6">
+                        <span class="font-bold text-lg">$ <%= product.price %></span>
+                        <a href="/cart/add/<%= product._id %>"
+                            class="btn btn-primary">
+                            <span>+</span>
+                            <span class="ml-4">Add</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </section>
+</div>
+
+<%- include("./partials/footer.ejs") %>
