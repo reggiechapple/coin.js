@@ -1,0 +1,86 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-blue" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Core</div>
+                <a class="nav-link sidenav-link active" asp-area="Administrators" asp-controller="Home" asp-action="Index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Dashboard
+                </a>
+                <div class="sb-sidenav-menu-heading">Actions</div>
+                <% if (user.role == "Vendor" || user.role == "Admin") { %>
+                    <a class="nav-link sidenav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Products
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseProducts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link sidenav-link" asp-area="Administrators" asp-controller="Users" asp-action="Index">Users</a>
+                            <a class="nav-link sidenav-link" asp-area="Administrators" asp-controller="Roles" asp-action="Index">Roles</a>
+                        </nav>
+                    </div>
+                <% } %>
+                <a class="nav-link sidenav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders" aria-expanded="false" aria-controls="collapseOrders">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Orders
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseOrders" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <% if (user.role == "Driver") { %>
+                            <a class="nav-link sidenav-link" href="#">Assignments</a>
+                        <% } %>
+                        <% if (user.role == "Vendor") { %>
+                            <a class="nav-link sidenav-link" href="#">All</a>
+                            <a class="nav-link sidenav-link" href="#">Pending</a>
+                        <% } %>
+                        <% if (user.role == "Admin") { %>
+                            <a class="nav-link sidenav-link" href="#">All</a>
+                            <a class="nav-link sidenav-link" href="#">Pending</a>
+                        <% } %>
+                    </nav>
+                </div>
+                <% if (user.role == "Admin") { %>
+                    <a class="nav-link sidenav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDrivers" aria-expanded="false" aria-controls="collapseDrivers">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Users
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseDrivers" aria-labelledby="headingThree" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link sidenav-link" href="/admin/users">All</a>
+                            <a class="nav-link sidenav-link" href="/admin/users/add">Add</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link sidenav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDrivers" aria-expanded="false" aria-controls="collapseDrivers">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Drivers
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseDrivers" aria-labelledby="headingThree" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link sidenav-link" href="#">All</a>
+                            <a class="nav-link sidenav-link" href="#">On-Shift</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link sidenav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendors" aria-expanded="false" aria-controls="collapseVendors">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Vendors
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseVendors" aria-labelledby="headingFour" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link sidenav-link" href="#">All</a>
+                            <a class="nav-link sidenav-link" href="#">Pending</a>
+                        </nav>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            Start Bootstrap
+        </div>
+    </nav>
+</div>

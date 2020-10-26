@@ -21,7 +21,7 @@ router.get("/cart/add/:id", (req, res) => {
         Product.findById(req.params.id, (err, product) => {
             if (err) {
                 console.log(err);
-                req.flash("error", "There has been an error finding this post");
+                req.flash("error", "There has been an error finding this product");
                 res.redirect("back");
             } else {
                 if (!cart.items[product._id]) {

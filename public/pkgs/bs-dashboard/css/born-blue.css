@@ -1,0 +1,57 @@
+body {
+    background-color: #f7f9fb;
+}
+
+.sb-sidenav-blue {
+    background-color: #31708e;
+    color: #f7f9fb;
+}
+
+.sidenav-link {
+    color: #8fc1e3;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: 500;
+}
+
+.sidenav-link.active,
+.topnav-link, 
+.nav-icon {
+    color: #f7f9fb;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: 500;
+}
+
+.nav-icon {
+    font-size: 1.2rem;
+}
+
+.sb-sidenav .sb-sidenav-footer {
+    padding: 0.75rem;
+    flex-shrink: 0;
+    background-color: #5085a5;
+    -webkit-box-shadow: 0px -2px 5px -3px rgba(31, 40, 51,0.7);
+    -moz-box-shadow: 0px -2px 5px -3px rgba(31, 40, 51,0.7);
+    box-shadow: 0px -2px 5px -3px rgba(31, 40, 51,0.7);
+}
+
+.bg-blue {
+    background-color: #5085a5;
+    -webkit-box-shadow: -3px -2px 5px 0px rgba(31, 40, 51,0.7);
+    -moz-box-shadow: -3px -2px 5px 0px rgba(31, 40, 51,0.7);
+    box-shadow: -3px -2px 5px 0px rgba(31, 40, 51,0.7);
+}
+
+.ice-text {
+    color: #f7f9fb;
+}
+
+.custom-card{ 
+    border-radius: .4rem; 
+    border-left: 5px solid #31708e !important;
+}
+
+.table-image td, .table-image th {
+    vertical-align: middle;
+}

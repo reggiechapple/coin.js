@@ -5,12 +5,16 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const flash = require("connect-flash");
-const Product = require("./models/Product");
+const User = require("./models/User");
 const port = process.env.PORT || 3000;
 const MongoStore = require('connect-mongo')(session);
 
 const shopRoutes = require("./routes/shop");
 const rootRoutes = require("./routes/root");
+const userRoutes = require("./routes/users");
+const driverRoutes = require("./routes/drivers");
+const vendorRoutes = require("./routes/vendors");
+const adminRoutes = require("./routes/admin");
 
 const MONGODB_URI = "mongodb://localhost:27017/coin";
 
@@ -32,11 +36,11 @@ app.use(session({
 }));
 
 // Set up passport for authentication
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Set up body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -104,6 +108,10 @@ app.locals.getStyles = function (req, res) {
 // Routes & Middleware
 app.use("/", rootRoutes);
 app.use("/", shopRoutes);
+app.use("/", userRoutes);
+app.use("/", vendorRoutes);
+app.use("/", driverRoutes);
+app.use("/", adminRoutes);
 
 const server = app.listen(port, () => {
     console.log("App is running on port " + port);
