@@ -1,0 +1,32 @@
+<%- include("../partials/dash-header.ejs") %>
+<div class="container">
+    <h1>Products</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <%= vendor.identity.name %>'s Products
+        </div>
+        <div class="card-body">
+            <a href="/vendors/products/add" class="btn btn-primary rounded-pill my-3">Add</a>
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% vendor.products.forEach(product => { %>
+                            <tr>
+                                <td><%= product.name %></td>
+                                <td><%= product.price %></td>
+                                <td>Details | Edit | Delete</td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+            </table>
+        </div>
+      </div>
+</div>
+<%- include("../partials/dash-footer.ejs") %>

@@ -34,7 +34,7 @@ var OrderSchema = new Schema({
     items: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'OrderItem'
+            ref: 'Product'
         }
     ],
 });

@@ -11,10 +11,6 @@ var VendorSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    orders: [{ 
-        type: Schema.Types.ObjectId, 
-        ref: 'OrderItem' 
-    }],
     products: [{
         type: Schema.Types.ObjectId,
         ref: 'Product'

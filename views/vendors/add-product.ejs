@@ -1,0 +1,32 @@
+<%- include("../partials/dash-header.ejs") %>
+<div class="container">
+    <h1>Products</h1>
+
+    <div class="card">
+        <div class="card-header">
+            Add Product
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/vendors/products/add" enctype="multipart/form-data">
+                
+                <div class="form-group">
+                    <label class="small mb-1" for="name">Name</label>
+                    <input class="form-control py-4" id="name" name="name" type="text" placeholder="Enter name" />
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="price">Price</label>
+                    <input class="form-control py-4" id="price" name="price" type="number" min="0.01" step="0.01" max="250000" placeholder="Enter price" />
+                </div>
+                <div class="form-group">
+                    <label class="small mb-1" for="image">Product Image</label>
+                    <input class="form-control-file py-4" type="file" id="image" name="image" accept="image/*" />
+                </div>
+
+                <div class="form-group mt-4 mb-0">
+                    <button class="btn btn-primary btn-block" type="submit">Create Product</button>
+                </div>
+            </form>
+        </div>
+      </div>
+</div>
+<%- include("../partials/dash-footer.ejs") %>
