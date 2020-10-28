@@ -1,6 +1,7 @@
 var router = require("express").Router();
 var Product = require("../models/Product");
 const Vendor = require("../models/Vendor");
+const OrderItem = require("../models/OrderItem");
 const multer = require("multer");
 const path = require("path");
 
@@ -61,6 +62,19 @@ router.get("/vendors/:id/products", (req, res) => {
             res.render("vendors/products", {vendor: vendor});
         }
     });
+});
+
+router.get("/vendors/:id/orders", (req, res) => {
+    OrderItem.find({ $and: [{ isPending: { $eq: true } }, { vendor: { $eq: req.params.id } }] }).populate("order").exec((err, orders) => {
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        }
+        else {
+            console.log(orders);
+            res.render("vendors/orders", {orders: orders});
+        }
+    })
 });
 
 router.get("/vendors/products/add", (req, res) => {

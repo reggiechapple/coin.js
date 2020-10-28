@@ -15,7 +15,6 @@ var VendorSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Product'
     }],
-
 });
 
 var Vendor = mongoose.model("Vendor", VendorSchema);

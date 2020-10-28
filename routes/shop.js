@@ -29,6 +29,7 @@ router.get("/cart/add/:id", (req, res) => {
                     cart.items[product._id] = {
                         product: product,
                         qty: 1,
+                        vendorId: product.vendor._id
                     }
                     cart.totalQty = cart.totalQty + 1;
                     cart.totalPrice = cart.totalPrice + product.price

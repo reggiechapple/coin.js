@@ -1,6 +1,7 @@
 var router = require("express").Router();
 var Product = require("../models/Product");
 var Driver = require("../models/Driver");
+const Order = require("../models/Order");
 const User = require("../models/User");
 const Customer = require("../models/Customer");
 const multer = require("multer");
@@ -97,6 +98,42 @@ router.post("/admin/users/add", isLoggedIn, upload.single("image"), (req, res) =
             return createUser(newUser, req.body.password, req, res);
         }
     }
+});
+
+router.get("/admin/orders/pending", (req, res) => {
+    Order.find({ status: { $ne: "COMPLETE" }})
+        .populate({
+            path: 'driver',
+            populate: {
+            path: 'identity',
+            model: 'User'
+        }}).exec((err, orders) => {
+        if(err) {
+            console.log(err);
+            res.redirect("back");
+        }
+        else {
+            Driver.find({}).populate("identity").exec((err, drivers) => {
+                res.render("admin/orders", {orders: orders, drivers: drivers });
+            });
+        }
+    });
+});
+
+router.post("/admin/orders/:id/assign-driver", (req, res) => {
+    Order.findById(req.params.id, (err, order) => {
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        }
+        else {
+            if (req.body.driver) {
+                order.driver = req.body.driver;
+                order.save();
+            }
+            res.redirect("back");
+        }
+    });
 });
 
 function createUser(newUser, password, req, res) {

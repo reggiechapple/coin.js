@@ -9,11 +9,7 @@ var ProductSchema = new Schema({
     vendor: {
         type: Schema.Types.ObjectId,
         ref: 'Vendor'
-    },
-    orders: [{ 
-        type: Schema.Types.ObjectId, 
-        ref: 'Order' 
-    }],
+    }
 });
 
 var Product = mongoose.model("Product", ProductSchema);

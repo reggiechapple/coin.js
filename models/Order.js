@@ -10,14 +10,15 @@ var OrderSchema = new Schema({
         street: { type: String, required: true },
         city: { type: String, required: true },
         state: { type: String, required: true },
+        country: { type: String, required: true },
         zip: { type: Number, required: true }
     },
     orderTotal: { type: Number, required: true },
     orderTime: { type: Date, default: Date.now },
     status: {
         type: String,
-        enum : ['PENDING', 'PREPARING', 'DELIVERING', 'ARRIVED', 'COMPLETE'],
-        default: 'PENDING'
+        enum : ['PREPARING', 'DELIVERING', 'ARRIVED', 'COMPLETE'],
+        default: 'PREPARING'
     },
     timeSlot: {
         type: Schema.Types.ObjectId,
@@ -31,12 +32,10 @@ var OrderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Driver'
     },
-    items: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Product'
-        }
-    ],
+    items: [{
+        type: Schema.Types.ObjectId,
+        ref: 'OrderItem'
+    }]
 });
 
 var Order = mongoose.model("Order", OrderSchema);
