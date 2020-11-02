@@ -1,0 +1,19 @@
+<%- include("../partials/dash-header.ejs") %>
+<div class="container my-3">
+    <h1><%= order.product.name %>'s Order</h1>
+    <%- include("../partials/order-tracking.ejs", {status: order.status}) %>
+    <div class="row my-3">
+        <form class="form-inline" action="/admin/order-items/<%= order._id %>/update-tracking" method="post">
+            <div class="form-group">
+                <label for="status" class="mb-2 mr-sm-2">Status</label>
+                <select class="custom-select mb-2 mr-sm-2" name="status" id="status">
+                    <% statues.forEach(status => { %>
+                        <option <%= (status === order.status) ? "selected" : ""; %> value="<%= status %>"><%= status %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 mr-sm-2">Update</button>
+        </form>
+    </div>
+</div>
+<%- include("../partials/dash-footer.ejs") %>

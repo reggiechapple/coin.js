@@ -7,6 +7,7 @@ const Customer = require("../models/Customer");
 const multer = require("multer");
 const path = require("path");
 const Vendor = require("../models/Vendor");
+const OrderItem = require("../models/OrderItem");
 
 // Multer setup
 const storage = multer.diskStorage({
@@ -91,7 +92,7 @@ router.post("/admin/users/add", isLoggedIn, upload.single("image"), (req, res) =
         });
         if (req.file) {
             let imgPath = toPosixPath(req.file.path)
-            newUser.avatar = imgPath.split("public/")[1];
+            newUser.avatar = imgPath.split("public")[1];
             return createUser(newUser, req.body.password, req, res);
         } else {
             newUser.avatar = "/images/no_profile.jpg";
@@ -101,27 +102,75 @@ router.post("/admin/users/add", isLoggedIn, upload.single("image"), (req, res) =
 });
 
 router.get("/admin/orders/pending", (req, res) => {
-    Order.find({ status: { $ne: "COMPLETE" }})
-        .populate({
-            path: 'driver',
-            populate: {
-            path: 'identity',
-            model: 'User'
-        }}).exec((err, orders) => {
+    Order.find({ isComplete: { $eq: false }}).exec((err, orders) => {
         if(err) {
             console.log(err);
             res.redirect("back");
         }
         else {
+            res.render("admin/orders", { orders: orders });
+        }
+    });
+});
+
+router.get("/admin/orders/:id", (req, res) => {
+    Order.findById(req.params.id).populate("items").exec((err, order) => {
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        }
+        else {
             Driver.find({}).populate("identity").exec((err, drivers) => {
-                res.render("admin/orders", {orders: orders, drivers: drivers });
+                if (err) {
+                    console.log(err);
+                    res.redirect("back");
+                }
+                else {
+                    res.render("admin/order-details", { order: order, drivers: drivers });
+                }
             });
         }
     });
 });
 
-router.post("/admin/orders/:id/assign-driver", (req, res) => {
-    Order.findById(req.params.id, (err, order) => {
+router.get("/admin/order-items/:id", (req, res) => {
+    OrderItem.findById(req.params.id)
+        .populate("vendor")
+        .populate({
+            path: 'driver',
+            populate: {
+            path: 'identity',
+            model: 'User'
+        }})
+        .exec((err, order) => {
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        }
+        else {
+            statues = ["PREPARING", "DELIVERING", "ARRIVED", "COMPLETE"]
+            res.render("admin/order-items", { order: order, statues: statues });
+        }
+    });
+});
+
+router.post("/admin/order-items/:id/update-tracking", (req, res) => {
+    OrderItem.findById(req.params.id, (err, order) => {
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        }
+        else {
+            order.status = req.body.status;
+            order.save();
+            res.redirect("back");
+        }
+    })
+})
+
+
+router.post("/admin/order-items/:id/assign-driver", (req, res) => {
+    OrderItem.findById(req.params.id, (err, order) => {
         if (err) {
             console.log(err);
             res.redirect("back");

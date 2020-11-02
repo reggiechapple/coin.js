@@ -9,6 +9,51 @@
     <link rel="stylesheet" href="/pkgs/bs-dashboard/css/styles.css">
     <link rel="stylesheet" href="/pkgs/bs-dashboard/css/born-blue.css">
     <%- getStyles() %>
+    <style>
+                .tracking-wrap {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px;
+}
+.tracking-wrap .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd;
+}
+.tracking-wrap .step {
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative;
+}
+.tracking-wrap .text {
+    display: block;
+    margin-top: 7px;
+}
+.tracking-wrap .step.active .icon {
+    background: #3167eb;
+    color: #fff;
+}
+.tracking-wrap .step.active:before {
+    background: #3167eb;
+}
+.tracking-wrap .step::before {
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px;
+}
+    </style>
 </head>
 <body class="sb-nav-fixed">
     <%- include("./dash-navbar.ejs") %>

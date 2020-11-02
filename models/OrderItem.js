@@ -3,12 +3,20 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var OrderItemSchema = new Schema({
-    isPending: { type: Boolean, default: true },
+    status: {
+        type: String,
+        enum : ['PREPARING', 'DELIVERING', 'ARRIVED'],
+        default: 'PREPARING'
+    },
     product: { type: Object, required: true },
     qty: { type: Number, required: true },
     vendor: {
         type: Schema.Types.ObjectId,
         ref: 'Vendor'
+    },
+    driver: {
+        type: Schema.Types.ObjectId,
+        ref: 'Driver'
     },
     order: {
         type: Schema.Types.ObjectId,

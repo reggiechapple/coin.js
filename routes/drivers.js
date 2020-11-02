@@ -1,7 +1,6 @@
 var router = require("express").Router();
-var Order = require("../models/Order");
+var OrderItem = require("../models/OrderItem");
 var Driver = require("../models/Driver");
-const e = require("express");
 
 router.get("/drivers/:id", (req, res) => {
     Driver.findById(req.params.id).populate("identity").exec((err, driver) => {
@@ -16,7 +15,7 @@ router.get("/drivers/:id", (req, res) => {
 });
 
 router.get("/drivers/:id/assignments", (req, res) => {
-    Order.find({ driver: { $eq: req.params.id }}).exec((err, orders) => {
+    OrderItem.find({ driver: { $eq: req.params.id }}).exec((err, orders) => {
         if(err) {
             console.log(err);
             res.redirect("back");

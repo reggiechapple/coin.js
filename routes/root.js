@@ -15,7 +15,12 @@ router.get("/", (req, res) => {
         }
     }
     else {
-        Product.find({}, (err, products) => {
+        Product.find({}).populate({
+            path: 'vendor',
+            populate: {
+            path: 'identity',
+            model: 'User'
+        }}).exec((err, products) => {
             if (err) {
                 console.log(err);
                 req.flash("error", "There has been an error finding products");

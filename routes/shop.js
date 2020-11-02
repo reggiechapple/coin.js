@@ -1,6 +1,34 @@
 var router = require("express").Router();
 var Product = require("../models/Product");
 
+router.get("/shop/products", (req, res) => {
+    Product.find({}).populate("vendor").exec((err, products) => {
+        if (err) {
+            console.log(err);
+            req.flash("error", "There has been an error finding products");
+            res.redirect("back");
+        } else {
+            res.render("shop/products", { products: products });
+        }
+    });
+});
+
+router.get("/shop/products/:id", (req, res) => {
+    Product.findById(req.params.id).populate({
+        path: 'vendor',
+        populate: {
+        path: 'identity',
+        model: 'User'
+    }}).exec((err, product) => {
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        }
+        else {
+            res.render("shop/product-details", {product: product});
+        }
+    });
+});
 router.get("/cart", (req, res) => {
     res.render("shop/cart");
 });

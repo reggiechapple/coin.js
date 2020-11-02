@@ -12,8 +12,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Status</th>
-                        <th>Drivers</th> 
+                        <th>Actions</th> 
                     </tr>
                     </thead>
                     <tbody>
@@ -21,26 +20,7 @@
                             <tr>
                                 <td><%= item.name %></td>
                                 <td><%= item.orderTotal %></td>
-                                <td><%= item.status %></td>
-                                <% if (item.driver) { %>
-                                    <td><%= item.driver.identity.name %></td>
-                                <% } else { %>
-                                    <td>
-                                        <form action="/admin/orders/<%= item._id %>/assign-driver" method="POST">
-                                            <div class="input-group">
-                                                <select class="custom-select" id="driver" name="driver" aria-label="Select driver">
-                                                    <option selected>Choose...</option>
-                                                    <% drivers.forEach(driver => { %>
-                                                        <option value="<%= driver._id %>"><%= driver.identity.name %></option>
-                                                    <% }) %>
-                                                </select>
-                                                <div class="input-group-append">
-                                                  <button class="btn btn-outline-secondary" type="submit">Assign</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </td>
-                                <% } %>
+                                <td><a href="/admin/orders/<%= item._id %>">View</a></td>
                             </tr>
                         <% }) %>
                     </tbody>

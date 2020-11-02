@@ -15,11 +15,7 @@ var OrderSchema = new Schema({
     },
     orderTotal: { type: Number, required: true },
     orderTime: { type: Date, default: Date.now },
-    status: {
-        type: String,
-        enum : ['PREPARING', 'DELIVERING', 'ARRIVED', 'COMPLETE'],
-        default: 'PREPARING'
-    },
+    isComplete: { type: Boolean, default: false },
     timeSlot: {
         type: Schema.Types.ObjectId,
         ref: 'TimeSlot'
@@ -27,10 +23,6 @@ var OrderSchema = new Schema({
     customer: {
         type: Schema.Types.ObjectId,
         ref: 'Customer'
-    },
-    driver: {
-        type: Schema.Types.ObjectId,
-        ref: 'Driver'
     },
     items: [{
         type: Schema.Types.ObjectId,

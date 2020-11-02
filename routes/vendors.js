@@ -71,7 +71,6 @@ router.get("/vendors/:id/orders", (req, res) => {
             res.redirect("back");
         }
         else {
-            console.log(orders);
             res.render("vendors/orders", {orders: orders});
         }
     })

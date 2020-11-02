@@ -1,0 +1,50 @@
+<div class="tracking-wrap">
+    <div class="step active">
+        <span class="icon"> <i class="fa fa-check"></i> </span>
+        <span class="text">Order confirmed</span>
+    </div> <!-- step.// -->
+    <% if (status === "PREPARING") { %>
+        <div class="step active">
+            <span class="icon"> <i class="fa fa-user"></i> </span>
+            <span class="text"> Prepared by vendor </span>
+        </div> <!-- step.// -->
+        <div class="step">
+            <span class="icon"> <i class="fa fa-truck"></i> </span>
+            <span class="text"> On the way </span>
+        </div> <!-- step.// -->
+        <div class="step">
+            <span class="icon"> <i class="fa fa-box"></i> </span>
+            <span class="text">Arrived</span>
+        </div> <!-- step.// -->
+    <% } %>
+
+    <% if (status === "DELIVERING") { %>
+        <div class="step active">
+            <span class="icon"> <i class="fa fa-check"></i> </span>
+            <span class="text"> Prepared by vendor </span>
+        </div> <!-- step.// -->
+        <div class="step active">
+            <span class="icon"> <i class="fa fa-truck"></i> </span>
+            <span class="text"> On the way </span>
+        </div> <!-- step.// -->
+        <div class="step">
+            <span class="icon"> <i class="fa fa-box"></i> </span>
+            <span class="text">Arrived</span>
+        </div> <!-- step.// -->
+    <% } %>
+
+    <% if (status === "ARRIVED") { %>
+        <div class="step active">
+            <span class="icon"> <i class="fa fa-check"></i> </span>
+            <span class="text"> Prepared by vendor </span>
+        </div> <!-- step.// -->
+        <div class="step active">
+            <span class="icon"> <i class="fa fa-check"></i> </span>
+            <span class="text"> On the way </span>
+        </div> <!-- step.// -->
+        <div class="step active">
+            <span class="icon"> <i class="fa fa-check"></i> </span>
+            <span class="text">Arrived</span>
+        </div> <!-- step.// -->
+    <% } %>
+</div>

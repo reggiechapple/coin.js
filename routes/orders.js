@@ -7,10 +7,8 @@ router.get("/orders/checkout", (req, res) => {
 });
 
 router.post("/orders/checkout", (req, res) => {
-    console.log("sanity top");
     
     let cart = req.session.cart;
-    console.log("sanity cart");
     let newOrder = new Order({
         name: req.body.name,
         email: req.body.email,
@@ -23,11 +21,7 @@ router.post("/orders/checkout", (req, res) => {
         },
         orderTotal: cart.totalPrice
     });
-    
-    console.log("sanity new order");
     return createOrder(newOrder, req, res);
-    
-
 });
 
 router.get("/orders/success", (req, res) => {
@@ -35,7 +29,6 @@ router.get("/orders/success", (req, res) => {
 })
 
 function createOrder(newOrder, req, res) {
-    console.log("sanity started order");
     Order.create(newOrder, (err, order) => {
         if (err) {
             console.log(err);
@@ -64,8 +57,7 @@ function createOrder(newOrder, req, res) {
                 items: {},
                 totalQty: 0,
                 totalPrice: 0
-            } 
-            console.log("sanity complete order");
+            }
             res.redirect("/orders/success");
         }
     });

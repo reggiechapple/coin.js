@@ -4,9 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coin</title>
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="/pkgs/bootstrap-ecommerce/css/bootstrap.css?v=2.0">
     <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/pkgs/bootstrap-ecommerce/css/responsive.css?v=2.0">
+    <link rel="stylesheet" href="/pkgs/bootstrap-ecommerce/css/ui.css?v=2.0">
+    <style>
+        .tracking-wrap {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px;
+}
+.tracking-wrap .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd;
+}
+.tracking-wrap .step {
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative;
+}
+.tracking-wrap .text {
+    display: block;
+    margin-top: 7px;
+}
+.tracking-wrap .step.active .icon {
+    background: #3167eb;
+    color: #fff;
+}
+.tracking-wrap .step.active:before {
+    background: #3167eb;
+}
+.tracking-wrap .step::before {
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px;
+}
+    </style>
     <%- getStyles() %>
 </head>
 <body>

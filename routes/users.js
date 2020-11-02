@@ -60,7 +60,7 @@ router.post("/users/register", upload.single("image"), (req, res) => {
         });
         if (req.file) {
             let imgPath = toPosixPath(req.file.path)
-            newUser.profile = imgPath.split("public/")[1];
+            newUser.profile = imgPath.split("public")[1];
             return createUser(newUser, req.body.password, req, res);
         } else {
             newUser.profile = "/images/no_profile.jpg";

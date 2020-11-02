@@ -16,6 +16,7 @@ const driverRoutes = require("./routes/drivers");
 const vendorRoutes = require("./routes/vendors");
 const ordersRoutes = require("./routes/orders");
 const adminRoutes = require("./routes/admin");
+const customerRoutes = require("./routes/customers");
 
 const MONGODB_URI = "mongodb://localhost:27017/coin";
 
@@ -114,6 +115,7 @@ app.use("/", vendorRoutes);
 app.use("/", driverRoutes);
 app.use("/", adminRoutes);
 app.use("/", ordersRoutes);
+app.use("/",  customerRoutes);
 
 const server = app.listen(port, () => {
     console.log("App is running on port " + port);

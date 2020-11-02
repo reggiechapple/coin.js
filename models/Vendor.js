@@ -7,10 +7,12 @@ var VendorSchema = new Schema({
         enum : ['PENDING', 'ACTIVE', 'INACTIVE'],
         default: 'PENDING'
     },
-    identity: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    identity: {type: Schema.Types.ObjectId,ref: 'User'},
+    companyName: String,
+    // identity: {
+    //     userId: {type: Schema.Types.ObjectId,ref: 'User'},
+    //     fullname: { type: String, required: true }
+    // },
     products: [{
         type: Schema.Types.ObjectId,
         ref: 'Product'
