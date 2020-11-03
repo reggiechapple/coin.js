@@ -10,9 +10,9 @@
         <div class="col-lg-4 col-xl-5 col-sm-8 col-md-4 d-none d-md-block">
           <form action="#" class="search-wrap">
             <div class="input-group w-100">
-              <input type="text" class="form-control" style="width:55%;" placeholder="Search">
+              <input type="text" class="form-control input-addon-rnd-pill" style="width:55%;" placeholder="Search">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-primary btn-addon-rnd-pill" type="submit">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
@@ -31,11 +31,15 @@
               </a>
             </div> <!-- widget .// -->
             <div class="widget-header">
-              <a href="#" class="ml-4 icontext">
+              <a href="/cart" class="ml-4 icontext">
                 <div class="icon"><i class="text-primary fa fa-lg fa-shopping-cart"></i></div>
                 <div class="text">
                   <small class="text-muted">Cart</small>
-                  <div>3 items</div>
+                  <% if (session.cart) { %>
+                    <div><%= session.cart.totalQty %>  items</div>
+                  <% } else { %>
+                    <div>0 items</div>
+                  <% } %>
                 </div>
               </a>
             </div> <!-- widget .// -->
@@ -52,11 +56,27 @@
                   <a class="dropdown-item" href="/profile/<%= user.customer._id %>">Profile setting</a>
                   <a class="dropdown-item" href="/profile/<%= user.customer._id %>/orders">My orders</a>
                   <hr class="dropdown-divider">
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="/users/logout">Log out</a>
+                </div> <!--  dropdown-menu .// -->
+              </div> <!-- widget  dropdown.// -->
+            <% } else { %>
+              <div class="widget-header dropdown">
+                <a href="#" class="ml-4 icontext" data-toggle="dropdown" data-offset="20,10">
+                  <div class="icon"><i class="text-primary fa fa-lg fa-user"></i></div>
+                  <div class="text">
+                    <small class="text-muted">Hello.</small>
+                    <div class="text-wrap">Guest <i class="fa fa-caret-down"></i></div>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="/users/login">Login</a>
+                  <a class="dropdown-item" href="/users/register">Register</a>
+                  <hr class="dropdown-divider">
+                  <a class="dropdown-item" href="#">Learn more</a>
                 </div> <!--  dropdown-menu .// -->
               </div> <!-- widget  dropdown.// -->
             <% } %>
-           
+            
           </div> <!-- widgets-wrap.// -->
         </div> <!-- col.// -->
       </div> <!-- row.// -->
@@ -96,16 +116,16 @@
           </li>
           <li class="nav-item"> <a class="nav-link" href="page-deal.html">Hot deals</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/shop/products">Products</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/shop/product-details">Products</a> </li>
           <li class="nav-item"> <a class="nav-link" href="page-blog.html">Markets</a> </li>
           <li class="nav-item"> <a class="nav-link" href="page-blog.html">Blog</a> </li>
         </ul>
-
-        <ul class="navbar-nav">
-          <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
-          <li class="nav-item"><a href="#" class="btn btn-primary ml-md-4"><i class="fa fa-plus"></i> Post item </a>
-          </li>
-        </ul>
+        <% if (!login) { %>
+          <ul class="navbar-nav">
+            <li class="nav-item"><a href="/users/login" class="btn btn-outline-primary rounded-pill">Login</a></li>
+            <li class="nav-item"><a href="/users/register" class="btn btn-primary rounded-pill ml-md-4">Register </a>
+            </li>
+          </ul>
+        <% } %>
       </div> <!-- collapse .// -->
     </div> <!-- container .// -->
   </nav>

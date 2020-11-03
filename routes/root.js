@@ -2,6 +2,13 @@ var router = require("express").Router();
 var Product = require("../models/Product");
 
 router.get("/", (req, res) => {
+    // if (req.session.cart) {
+    //     req.session.cart = {
+    //         items: {},
+    //         totalQty: 0,
+    //         totalPrice: 0
+    //     }
+    // }
     if (req.isAuthenticated() && req.user.role !== "Customer") {
 
         if (req.user.role === "Vendor") {

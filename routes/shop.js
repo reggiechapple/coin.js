@@ -73,4 +73,30 @@ router.get("/cart/add/:id", (req, res) => {
     }
 });
 
+router.get("/cart/remove/:id", (req, res) => {
+    let cart = req.session.cart;
+
+    if (req.params.id) {
+
+        Product.findById(req.params.id, (err, product) => {
+            if (err) {
+                console.log(err);
+                req.flash("error", "There has been an error finding this product");
+                res.redirect("back");
+            } else {
+                if (cart.items[product._id]) {
+
+                    delete cart.items[product._id];
+                    cart.totalQty = cart.totalQty - 1;
+                    cart.totalPrice = cart.totalPrice - product.price
+                }
+                else {
+                   console.log("Item is not in cart")
+                }
+                return res.redirect("/cart");
+            }
+        });
+    }
+});
+
 module.exports = router;

@@ -76,6 +76,10 @@ router.get("/vendors/:id/orders", (req, res) => {
     })
 });
 
+router.get("/vendors/:id/timeslots", (req, res) => {
+    
+});
+
 router.get("/vendors/products/add", (req, res) => {
     res.render("vendors/add-product");
 });

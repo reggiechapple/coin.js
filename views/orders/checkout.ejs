@@ -1,135 +1,220 @@
 <%- include("../partials/header.ejs") %>
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
+<section class="section-content padding-y bg">
     <div class="container">
-    
-    <div class="card mb-4">
-          <div class="card-body">
-          <h4 class="card-title mb-3">Delivery info</h4>
-    
-          <div class="form-row">
-                <div class="form-group col-sm-6">
-                    <label class="js-check box active">
-                        <input type="radio" name="dostavka" value="option1" checked>
-                        <h6 class="title">Standart delivery</h6>
-                        <p class="text-muted">Free by airline within 20 days</p>
-                    </label> <!-- js-check.// -->
-                </div>
-                <div class="form-group col-sm-6">
-                    <label class="js-check box">
-                        <input type="radio" name="dostavka" value="option1">
-                        <h6 class="title">Fast delivery</h6>
-                        <p class="text-muted">Extra 20$ will be charged </p>
-                    </label> <!-- js-check.// -->
-                </div>
-            </div> <!-- form row.// -->
-    
-        <div class="form-row">
-            <div class="col form-group">
-                <label>First name</label>
-                  <input type="text" class="form-control" placeholder="">
-            </div> <!-- form-group end.// -->
-            <div class="col form-group">
-                <label>Last name</label>
-                  <input type="text" class="form-control" placeholder="">
-            </div> <!-- form-group end.// -->
-        </div> <!-- form-row end.// -->
-    
-        <div class="form-row">
-            <div class="col form-group">
-                <label>Email</label>
-                  <input type="email" class="form-control" placeholder="">
-            </div> <!-- form-group end.// -->
-            <div class="col form-group">
-                <label>Phone</label>
-                  <input type="text" class="form-control" placeholder="">
-            </div> <!-- form-group end.// -->
-        </div> <!-- form-row end.// -->
-    
-        <div class="form-row">
-            <div class="form-group col-md-6">
-              <label>Country</label>
-              <select id="inputState" class="form-control">
-                <option> Choose...</option>
-                  <option>Uzbekistan</option>
-                  <option>Russia</option>
-                  <option selected="">United States</option>
-                  <option>India</option>
-                  <option>Afganistan</option>
-              </select>
-            </div> <!-- form-group end.// -->
-            <div class="form-group col-md-6">
-              <label>City</label>
-              <input type="text" class="form-control">
-            </div> <!-- form-group end.// -->
-        </div> <!-- form-row.// -->
-        <div class="form-group">
-            <label>Adress</label>
-           <textarea class="form-control" rows="2"></textarea>
-        </div> <!-- form-group// -->  
-    
-          </div> <!-- card-body.// -->
-        </div>  <!-- card .// -->
-    
-    
-            <div class="card mb-4">
-          <div class="card-body">
-          <h4 class="card-title mb-4">Payment</h4>
-          <form role="form" style="max-width:380px;">
-                <div class="form-group">
-                <label for="username">Name on card</label>
-                <input type="text" class="form-control" name="username" placeholder="Ex. John Smith" required="">
-                </div> <!-- form-group.// -->
-    
-                <div class="form-group">
-                <label for="cardNumber">Card number</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" name="cardNumber" placeholder="">
-                    <div class="input-group-append">
-                        <span class="input-group-text">
-                            <i class="fab fa-cc-visa"></i> &nbsp; <i class="fab fa-cc-amex"></i> &nbsp; 
-                            <i class="fab fa-cc-mastercard"></i> 
-                        </span>
-                    </div>
-                </div> <!-- input-group.// -->
-                </div> <!-- form-group.// -->
-    
-                <div class="row">
-                    <div class="col-md flex-grow-0">
-                        <div class="form-group">
-                            <label class="hidden-xs">Expiration</label>
-                            <div class="form-inline" style="min-width: 220px">
-                                <select class="form-control" style="width:100px">
-                                    <option>MM</option>
-                                    <option>01 - Janiary</option>
-                                    <option>02 - February</option>
-                                    <option>03 - February</option>
-                                </select>
-                                <span style="width:20px; text-align: center"> / </span>
-                                <select class="form-control" style="width:100px">
-                                    <option>YY</option>
-                                    <option>2018</option>
-                                    <option>2019</option>
+    <!-- ============================ COMPONENT 2 ================================= -->
+    <div class="row">
+        <main class="col-md-8">
+
+            <article class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Review cart</h4>
+                    <div class="row">
+                        <% if (session.cart) { %>
+                            <% for(let item of Object.values(session.cart.items)) { %>
+                                <div class="col-md-6">
+                                    <figure class="itemside  mb-4">
+                                        <div class="aside"><img src="<%= item.product.image %> "
+                                                class="border img-sm"></div>
+                                        <figcaption class="info">
+                                            <p><%= item.product.name %> </p>
+                                            <span class="text-muted"><%= item.qty %>x = $<%= item.product.price * item.qty %> </span>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                              <% } %>
+                        <% } %>
+                    </div> <!-- row.// -->
+                </div> <!-- card-body.// -->
+            </article> <!-- card.// -->
+
+
+            <article class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Contact info</h4>
+                    <form action="">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label>Frst name</label>
+                                <input type="text" placeholder="Type here" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Last name</label>
+                                <input type="text" placeholder="Type here" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Phone</label>
+                                <input type="text" value="+998" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label>Email</label>
+                                <input type="email" placeholder="example@gmail.com" class="form-control">
+                            </div>
+                        </div> <!-- row.// -->
+                    </form>
+                </div> <!-- card-body.// -->
+            </article> <!-- card.// -->
+
+
+            <article class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Delivery info</h4>
+                    <form action="">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="js-check box active">
+                                    <input type="radio" name="dostavka" value="option1" checked="">
+                                    <h6 class="title">Delivery</h6>
+                                    <p class="text-muted">We will deliver by DHL Kargo</p>
+                                </label> <!-- js-check.// -->
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="js-check box">
+                                    <input type="radio" name="dostavka" value="option1">
+                                    <h6 class="title">Pick-up</h6>
+                                    <p class="text-muted">Come to our office to somewhere </p>
+                                </label> <!-- js-check.// -->
+                            </div>
+                        </div> <!-- row.// -->
+
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label>City*</label>
+                                <select name="" class="form-control">
+                                    <option value="">Tashkent</option>
+                                    <option value="">Buxoro</option>
+                                    <option value="">Samarqand</option>
                                 </select>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label data-toggle="tooltip" title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-                            <input class="form-control" required="" type="text">
-                        </div> <!-- form-group.// -->
-                    </div>
-                </div> <!-- row.// -->
-                <button class="subscribe btn btn-primary btn-block" type="button"> Confirm  </button>
-            </form>
-          </div> <!-- card-body.// -->
-        </div> <!-- card .// -->
-    
-    
-    <br><br> 
-    
+                            <div class="form-group col-sm-6">
+                                <label>Area*</label>
+                                <input type="text" placeholder="Type here" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-8">
+                                <label>Street*</label>
+                                <input type="text" placeholder="Type here" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Building</label>
+                                <input type="text" placeholder="" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>House</label>
+                                <input type="text" placeholder="Type here" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Postal code</label>
+                                <input type="text" placeholder="" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Zip</label>
+                                <input type="text" placeholder="" class="form-control">
+                            </div>
+                        </div> <!-- row.// -->
+                    </form>
+                </div> <!-- card-body.// -->
+            </article> <!-- card.// -->
+
+
+            <article class="accordion" id="accordion_pay">
+                <div class="card">
+                    <header class="card-header">
+                        <i class="fab fa-2x fa-paypal float-right"></i>
+                        <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
+                            <input class="form-check-input" name="payment-option" checked="" type="radio"
+                                value="option2">
+                            <h6 class="form-check-label">
+                                Paypal
+                            </h6>
+                        </label>
+                    </header>
+                    <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
+                        <div class="card-body">
+                            <p class="text-center text-muted">Connect your PayPal account and use it to pay your
+                                bills. You'll be redirected to PayPal to add your billing information.</p>
+                            <p class="text-center">
+                                <i class="fab fa-2x fa-cc-paypal"></i>
+                                <br><br>
+                            </p>
+                        </div> <!-- card body .// -->
+                    </div> <!-- collapse .// -->
+                </div> <!-- card.// -->
+                <div class="card">
+                    <header class="card-header">
+                        <span class="float-right">
+                            <i class="fab fa-2x fa-cc-visa"></i> <i class="fab fa-2x fa-cc-mastercard"></i>
+                        </span>
+                        <label class="form-check" data-toggle="collapse" data-target="#pay_payme">
+                            <input class="form-check-input" name="payment-option" type="radio" value="option2">
+                            <h6 class="form-check-label"> Credit Card </h6>
+                        </label>
+                    </header>
+                    <div id="pay_payme" class="collapse" data-parent="#accordion_pay">
+                        <div class="card-body">
+                            <p class="alert alert-success">Some information or instruction</p>
+                            <form class="form-inline">
+                                <input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx"
+                                    name="">
+                                <input type="text" class="form-control mr-2" style="width: 100px"
+                                    placeholder="dd/yy" name="">
+                                <input type="number" maxlength="3" class="form-control mr-2" style="width: 100px"
+                                    placeholder="cvc" name="">
+                                <button class="btn btn btn-success">Button</button>
+                            </form>
+                        </div> <!-- card body .// -->
+                    </div> <!-- collapse .// -->
+                </div> <!-- card.// -->
+                <div class="card">
+                    <header class="card-header">
+                        <i class="fas fa-2x fa-money-bill float-right"></i>
+                        <label class="form-check" data-toggle="collapse" data-target="#pay_card">
+                            <input class="form-check-input" name="payment-option" type="radio" value="option1">
+                            <h6 class="form-check-label"> Cash on Delivery </h6>
+                        </label>
+                    </header>
+                    <div id="pay_card" class="collapse" data-parent="#accordion_pay">
+                        <div class="card-body">
+                            <p class="text-muted">Some instructions about how to pay </p>
+                            <p>
+                                Instructions <br>
+                            </p>
+                        </div> <!-- card body .// -->
+                    </div> <!-- collapse .// -->
+                </div> <!-- card.// -->
+            </article>
+            <!-- accordion end.// -->
+
+        </main> <!-- col.// -->
+        <aside class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="mb-3">Overview</h4>
+                    <dl class="dlist-align">
+                        <dt class="text-muted">Delivery:</dt>
+                        <dd>Pick-up</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt class="text-muted">Delivery type:</dt>
+                        <dd>Standart</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt class="text-muted">Payment method:</dt>
+                        <dd>Cash</dd>
+                    </dl>
+                    <hr>
+                    <dl class="dlist-align">
+                        <dt>Total:</dt>
+                        <dd class="h5">$<%= session.cart.totalPrice %></dd>
+                    </dl>
+                    <hr>
+                    <p class="small mb-3 text-muted">By clicking you are agree with terms of condition </p>
+                    <a href="#" class="btn btn-primary btn-block rounded-pill"> Button </a>
+
+                </div> <!-- card-body.// -->
+            </div> <!-- card.// -->
+        </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+    <!-- ============================ COMPONENT 2 END//  ================================= -->
     </div> <!-- container .//  -->
-    </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
+</section>
 <%- include("../partials/footer.ejs") %>
