@@ -65,7 +65,7 @@ router.get("/vendors/:id/products", (req, res) => {
 });
 
 router.get("/vendors/:id/orders", (req, res) => {
-    OrderItem.find({ $and: [{ isPending: { $eq: true } }, { vendor: { $eq: req.params.id } }] }).populate("order").exec((err, orders) => {
+    OrderItem.find({ $and: [{ status: { $ne: 'ARRIVED' } }, { vendor: { $eq: req.params.id } }] }).populate("order").exec((err, orders) => {
         if (err) {
             console.log(err);
             res.redirect("back");
