@@ -11,13 +11,8 @@ class OrderItemRepository extends Repository {
         this.OrderItem.find({ $and: [{ status: { $ne: 'ARRIVED' } }, { vendor: { $eq: id } }] }).populate("order").exec(cb);
     }
 
-    driverOrderItems(id, cb) {
-        this.OrderItem.find({ driver: { $eq: id } }).populate({
-            path: 'driver',
-            populate: {
-            path: 'identity',
-            model: 'User'
-        }}).exec(cb);
+    driverAssignments(id, cb) {
+        this.OrderItem.find({ driver: { $eq: id } }).populate("order").exec(cb);
     }
 
     populated(id, cb) {

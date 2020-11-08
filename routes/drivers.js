@@ -1,29 +1,14 @@
-var router = require("express").Router();
-var OrderItem = require("../models/OrderItem");
-var Driver = require("../models/Driver");
+const router = require("express").Router();
+
+const DriverViewService = require("../services/drivers/DriverViewService");
+let _viewService = new DriverViewService();
 
 router.get("/drivers/:id", (req, res) => {
-    Driver.findById(req.params.id).populate("identity").exec((err, driver) => {
-        if (err) {
-            console.log(err);
-            res.redirect("back");
-        }
-        else {
-            res.render("drivers/index", {driver: driver})
-        }
-    });
+    _viewService.getProfile(req.params.id, req, res);
 });
 
 router.get("/drivers/:id/assignments", (req, res) => {
-    OrderItem.find({ driver: { $eq: req.params.id }}).exec((err, orders) => {
-        if(err) {
-            console.log(err);
-            res.redirect("back");
-        }
-        else {
-            res.render("drivers/orders", { orders: orders });
-        }
-    });
+    _viewService.getProfile(req.params.id, req, res);
 });
 
 module.exports = router;

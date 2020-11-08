@@ -22,7 +22,7 @@ class Repository {
     }
 
     delete(id, cb) {
-        this.Model.findByIdAndDelete(id, cb());
+        this.Model.findByIdAndDelete(id, cb);
     }
 
 }
