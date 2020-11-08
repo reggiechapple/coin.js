@@ -1,0 +1,9 @@
+<%- include("../partials/header.ejs") %>
+<div class="container">
+    <ul>
+        <% products.forEach(product => { %>
+            <li><%= product.name %> - <%= product.vendor.identity.name %>  </li>
+        <% }) %>
+    </ul>
+</div>
+<%- include("../partials/footer.ejs") %>

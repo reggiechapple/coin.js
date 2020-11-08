@@ -1,0 +1,75 @@
+<%- include("../partials/header")  %>
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+
+        <div class="row">
+            <%- include("../partials/profile-sidenav")  %> 
+            <main class="col-md-9">
+
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row">
+                            <div class="col-md-9">
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control rounded-pill" value="Vosidiy">
+                                    </div> <!-- form-group end.// -->
+                                    <div class="col form-group">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control rounded-pill" value="vosidiy@gmail.com">
+                                    </div> <!-- form-group end.// -->
+                                </div> <!-- form-row.// -->
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Country</label>
+                                        <select id="inputState" class="form-control rounded-pill">
+                                            <option> Choose...</option>
+                                            <option>Uzbekistan</option>
+                                            <option>Russia</option>
+                                            <option selected="">United States</option>
+                                            <option>India</option>
+                                            <option>Afganistan</option>
+                                        </select>
+                                    </div> <!-- form-group end.// -->
+                                    <div class="form-group col-md-6">
+                                        <label>City</label>
+                                        <input type="text" class="form-control rounded-pill">
+                                    </div> <!-- form-group end.// -->
+                                </div> <!-- form-row.// -->
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Zip</label>
+                                        <input type="text" class="form-control rounded-pill" value="123009">
+                                    </div> <!-- form-group end.// -->
+                                    <div class="form-group col-md-6">
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control rounded-pill" value="+123456789">
+                                    </div> <!-- form-group end.// -->
+                                </div> <!-- form-row.// -->
+
+                                <button class="btn btn-primary rounded-pill">Save</button>
+                                <button class="btn btn-light rounded-pill">Change password</button>
+
+                                <br><br><br><br><br><br>
+
+                            </div> <!-- col.// -->
+                            <div class="col-3">
+                                <img src="<%= customer.identity.avatar %> " class="img-md rounded-circle border">
+                            </div> <!-- col.// -->
+                        </form>
+                    </div> <!-- card-body.// -->
+                </div> <!-- card .// -->
+
+
+
+            </main> <!-- col.// -->
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<%- include("../partials/footer")  %>

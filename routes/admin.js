@@ -8,6 +8,9 @@ const multer = require("multer");
 const path = require("path");
 const Vendor = require("../models/Vendor");
 const OrderItem = require("../models/OrderItem");
+const ProductRepository = require("../repositories/ProductRepository");
+
+let _productRepository = new ProductRepository(Product);
 
 // Multer setup
 const storage = multer.diskStorage({
