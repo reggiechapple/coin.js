@@ -107,20 +107,7 @@
             <% if (products) { %>
                 <% products.forEach(product => { %>
                     <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-                                <img class="img-fluid p-0" src="<%= product.image %>">
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap text-center">
-                                <a href="/shop/products/<%= product._id %>" class="title mb-2"><%= product.name %></a>
-                                <div class="price-wrap mb-3">
-                                    <span class="price">$<%= product.price %></span><br/>
-                                    <small class="text-muted">per item</small>
-                                </div> <!-- price-wrap.// -->
-                                <hr>
-                                <a href="/cart/add/<%= product._id %>" class="btn btn-primary btn-block rounded-pill"><i class="fas fa-cart-plus"></i> Add to Cart</a>
-                            </figcaption>
-                        </figure>
+                        <%- include("../partials/product-card.ejs", {product: product}) %>
                     </div> <!-- col.// -->  
                 <% }) %>
             <% } else { %>

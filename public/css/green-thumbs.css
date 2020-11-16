@@ -1,0 +1,136 @@
+@font-face {
+  font-family: raleway;
+  src: url(../fonts/raleway/static/Raleway-Light.ttf);
+}
+
+body {
+  background: rgb(255, 255, 255);
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: raleway, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 23px;
+  color: #005c5b;
+  padding-top: 100px;
+}
+
+.widget-header .text {
+  max-width: 100%;
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  line-height: 1.2;
+}
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+.carousel.carousel-fade .carousel-item {
+  display: block !important;
+  opacity: 0 !important;
+  transition: opacity ease-out 0.7s !important;
+}
+
+.carousel.carousel-fade .carousel-item.active {
+    opacity: 1 !important;
+}
+
+.search-dropdown {
+  position: static !important;
+}
+
+.search-dropdown-menu {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  margin-top: 0px !important;
+  width: 100% !important;
+}
+
+.mosque-bg {
+  background-color: #005c5b !important;
+}
+
+.mosque-txt {
+  color: #005c5b !important;
+}
+
+.btn-outline-mosque {
+  color: #005c5b;
+  border-color: #005c5b;
+}
+
+.btn-mosque {
+  background-color: #005c5b;
+  color: #ffffff;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.no-gutters > .col,
+.no-gutters > [class*="col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+.b-0 {
+  bottom: 0;
+}
+.bg-shadow {
+  background: rgba(76, 76, 76, 0);
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(179, 171, 171, 0)),
+    color-stop(49%, rgba(48, 48, 48, 0.37)),
+    color-stop(100%, rgba(19, 19, 19, 0.8))
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(179, 171, 171, 0) 0%,
+    rgba(48, 48, 48, 0.71) 49%,
+    rgba(19, 19, 19, 0.8) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313', GradientType=0 );
+}
+.top-indicator {
+  right: 0;
+  top: 1rem;
+  bottom: inherit;
+  left: inherit;
+  margin-right: 1rem;
+}
+.overflow {
+  position: relative;
+  overflow: hidden;
+}
+.zoom img {
+  transition: all 0.2s linear;
+}
+.zoom:hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.notify {
+    top: 3px;
+    right: 1px;
+}
+
+.lh-100 {
+  line-height: 1;
+}
+.lh-125 {
+  line-height: 1.25;
+}
+.lh-150 {
+  line-height: 1.5;
+}
